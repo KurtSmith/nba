@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client"
 import { Provider } from "react-redux"
 import App from "./App"
 import "./index.css"
-import { ApiProvider } from '@reduxjs/toolkit/query/react';
+import {store} from './state/store'
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-   
+  <React.Fragment>
+   <Provider store={store}>
       <App />
-
-  </React.StrictMode>,
+      </Provider>
+  </React.Fragment>,
 )
