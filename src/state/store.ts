@@ -1,7 +1,8 @@
 import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import thunkMiddleware from 'redux-thunk';
-import reducer from '../features/players/reducers/playerSlice'
+import playerReducer from '../features/players/reducers/playerSlice'
+import teamReducer from '../features/teams/reducers/teamSlice'
 import { api } from './api'
 
 const createStore = (
@@ -10,7 +11,8 @@ const createStore = (
   configureStore({
     reducer: {
       [api.reducerPath]: api.reducer,
-      slice: reducer
+      players: playerReducer,
+      teams:teamReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(api.middleware).concat(thunkMiddleware),
