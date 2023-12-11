@@ -6,13 +6,15 @@ import { TeamsComponent } from "./features/teams/Team"
 import Nav from "./Nav";
 import { Outlet, Route, Routes } from "react-router-dom";
 import Home from "./Home";
+import { GameComponent } from "./features/games/Games";
+import './fonts/RollboxBold-OVxvO.ttf'
 
 function App() {
   return (   
     <div className="App">
       <Nav/>
       <Routes> 
-        <Route path="/" element={<Home />}/>     
+        <Route path="/" element={<GameComponent />}/>     
         <Route path="Player"element={<PlayerComponent/> } /> 
         <Route path="Teams" element={<TeamsComponent/> } /> 
       </Routes> 

@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: "RollboxBold";   /*Can be any text*/
+  src: local("RollboxBold-OVxvO"),
+    url("./fonts/RollboxBold-OVxvO.ttf") format("truetype");
+}

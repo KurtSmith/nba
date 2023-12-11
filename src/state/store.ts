@@ -3,6 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import thunkMiddleware from 'redux-thunk';
 import playerReducer from '../features/players/reducers/playerSlice'
 import teamReducer from '../features/teams/reducers/teamSlice'
+import gamesReducer from '../features/games/reducers/gamesSlice'
 import statisticsReducer from '../features/statistics/reducers/statisticsSlice'
 import { api } from './api'
 
@@ -14,7 +15,8 @@ const createStore = (
       [api.reducerPath]: api.reducer,
       players: playerReducer,
       teams:teamReducer,
-      statistics:statisticsReducer
+      statistics:statisticsReducer,
+      games:gamesReducer
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(api.middleware).concat(thunkMiddleware),

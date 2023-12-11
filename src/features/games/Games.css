@@ -1,0 +1,58 @@
+span
+{
+    font-size: 2em;
+    font-weight: bold;
+}
+
+img
+{
+    display: block;
+    max-width:100px;
+    max-height:95px;
+    width: auto;
+    height: auto;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.flexDiv
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    border-style:outset;
+    min-width: 30em;
+}
+
+.flexDivOuter
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.scoreDivLeft
+{
+    display:flex;
+    flex-direction:column;
+    margin:1.25em;
+    margin-right:auto;
+    font-family:RollboxBold
+}
+.scoreDivRight
+{
+    display:flex;
+    flex-direction:column;
+    margin:1.25em;
+    margin-left:auto;
+}
+.accordion-button
+{
+    min-width:30em;
+    background-color: cornflowerblue !important;
+}
+.accordion
+{
+    max-width: 30em;
+}
