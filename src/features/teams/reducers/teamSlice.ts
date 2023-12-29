@@ -1,15 +1,6 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
 import { getTeams } from '../../../apis/teamApiAxios'
 
-// First, create the thunk
-export const fetchPlayerById = createAsyncThunk(
-    'teams/fetchTeams',
-    async (userId: string, thunkAPI) => {
-      const response = await getTeams()
-      return response;
-    }
-  )
-
 const slice = createSlice({
   name: 'teams',
   initialState: [] as Team[],

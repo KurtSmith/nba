@@ -21,7 +21,6 @@ img
     flex-direction: row;
     justify-content: center;
     align-items:center;
-    border-style:outset;
     min-width: 30em;
 }
 
@@ -30,14 +29,13 @@ img
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
+    margin-bottom: 1em;
 }
 .scoreDivLeft
 {
     display:flex;
     flex-direction:column;
-    margin:1.25em;
-    /*margin-right:auto;*/
     min-width:150px;
     font-family:RollboxBold
 }
@@ -45,8 +43,6 @@ img
 {
     display:flex;
     flex-direction:column;
-    margin:1.25em;
-    /*margin-left:auto;*/
     min-width:150px;
     font-family:RollboxBold
 }
@@ -58,4 +54,9 @@ img
 .accordion
 {
     max-width: 30em;
+}
+
+.team-scoreDiv
+{
+    border: .1em thick black;
 }

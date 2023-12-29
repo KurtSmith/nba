@@ -18,7 +18,7 @@ function App() {
         <Route path="Player"element={<PlayerComponent/> } /> 
         <Route path="Teams" element={<TeamsComponent/> } /> 
       </Routes> 
-      <Outlet></Outlet>
+      <Outlet/>
     </div>
   )
 }

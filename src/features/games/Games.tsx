@@ -27,7 +27,7 @@ export function GameComponent() {
         games.map( (team,index)=>
           (
             <div className='flexDivOuter'>
-              <div>
+              <div className="team-scoreDiv">
                 <div className='flexDiv'>
                   <div className='scoreDivLeft'>
                     <img src={team.teams.visitors.logo}></img>

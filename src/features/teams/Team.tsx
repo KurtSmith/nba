@@ -4,7 +4,6 @@ import { getTeams } from "../../apis/teamApiAxios"
 import { Team } from './reducers/teamSlice';
 import { useEffect, useRef } from 'react';
 
-
 export function TeamsComponent() {
   const dispatch = useAppDispatch();
   useEffect(() => {
