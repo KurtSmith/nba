@@ -31,11 +31,17 @@ export function GameComponent() {
                 <div className='flexDiv'>
                   <div className='scoreDivLeft'>
                     <img src={team.teams.visitors.logo}></img>
+                  </div>
+                  <div className='scoreDivRight'>
+                    <img src={team.teams.home.logo}></img>    
+                  </div>
+                </div>
+                <div className='flexDiv'>
+                  <div className='scoreDivLeft'>
                     <span className='scoreTest'>{team.scores.visitors.points}</span>
                   </div>
                   <div className='scoreDivRight'>
-                    <img src={team.teams.home.logo}></img>
-                    <span className='scoreTest'>{team.scores.home.points}</span>              
+                  <span className='scoreTest'>{team.scores.visitors.points}</span>
                   </div>
                 </div>
               </div>
