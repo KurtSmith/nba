@@ -1,17 +1,9 @@
-import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
+import { createSlice, current } from '@reduxjs/toolkit'
 import { getGames } from '../../../apis/gamesApiAxios';
-
-// First, create the thunk
-export const fetchGamesByDate= createAsyncThunk(
-    'games/fetchGames',
-    async (date: string, thunkAPI) => {
-      const response = await getGames(date)
-      return response;
-    }
-  )
+import { Player } from '../../players/reducers/playerSlice';
 
 const slice = createSlice({
-  name: 'teams',
+  name: 'games',
   initialState: [] as Game[],
   reducers: { 
   },
@@ -19,8 +11,8 @@ const slice = createSlice({
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getGames.fulfilled, (state, action) => {
       // Add user to the state array
-      console.log(current(state));
-      return action.payload.response;
+      console.log(action.payload);
+      return action.payload;
     })
   },
 })
@@ -44,6 +36,9 @@ export interface Game {
   timesTied:   number;
   leadChanges: number;
   nugget:      null;
+}
+export interface GameWithPlayers extends Game {
+  players:Player[];
 }
 
 export interface Arena {

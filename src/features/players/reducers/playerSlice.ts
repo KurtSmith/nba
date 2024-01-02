@@ -1,5 +1,5 @@
 import { createSlice, current } from '@reduxjs/toolkit'
-import { getPlayersById } from '../../../apis/playerApiAxios'
+import { getPlayersById, getPlayersByTeamId } from '../../../apis/playerApiAxios'
 
 const slice = createSlice({
   name: 'player',
@@ -9,6 +9,11 @@ const slice = createSlice({
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(getPlayersById.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log(current(state));
+      return action.payload.response[0];
+    }),
+    builder.addCase(getPlayersByTeamId.fulfilled, (state, action) => {
       // Add user to the state array
       console.log(current(state));
       return action.payload.response[0];

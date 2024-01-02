@@ -1,9 +1,8 @@
-span
+.span
 {
     font-size: 2em;
     font-weight: bold;
 }
-
 img
 {
     display: block;
@@ -13,8 +12,8 @@ img
     height: auto;
     margin-left: 1em;
     margin-right: 1em;
+    min-width:100px;
 }
-
 .flexDiv
 {
     display: flex;
@@ -22,8 +21,8 @@ img
     justify-content: center;
     align-items:center;
     min-width: 30em;
+    margin-bottom: 10px;
 }
-
 .flexDivOuter
 {
     display: flex;
@@ -32,19 +31,22 @@ img
     align-items: center;
     margin-bottom: 1em;
 }
+
 .scoreDivLeft
 {
     display:flex;
     flex-direction:column;
     min-width:150px;
-    font-family:RollboxBold
+    font-family:RollboxBold;
+    align-items: center;
 }
 .scoreDivRight
 {
     display:flex;
     flex-direction:column;
     min-width:150px;
-    font-family:RollboxBold
+    font-family:RollboxBold;
+    align-items: center;
 }
 .accordion-button
 {
@@ -55,8 +57,19 @@ img
 {
     max-width: 30em;
 }
-
 .team-scoreDiv
 {
-    border: .1em thick black;
+    border: .1em solid black;
+    padding: 1em 0 .5em 0
+}
+
+.inherit-font-family
+{
+    font-family: RollboxBold !important;
+    margin-bottom: 2em;
+}
+.date
+{
+    font-family: RollboxBold !important;
+    font-size: 2em;
 }
