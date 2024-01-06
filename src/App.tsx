@@ -12,7 +12,9 @@ import './fonts/RollboxBold-OVxvO.ttf'
 function App() {
   return (   
     <div className="App">
+     <div className="App-Nav">
       <Nav/>
+      </div>
       <Routes> 
         <Route path="/" element={<GameComponent />}/>     
         <Route path="Player"element={<PlayerComponent/> } /> 
