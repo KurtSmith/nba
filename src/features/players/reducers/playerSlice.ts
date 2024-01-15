@@ -1,5 +1,6 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import { getPlayersById, getPlayersByTeamId } from '../../../apis/playerApiAxios'
+import { Statistics } from '../../statistics/reducers/statisticsSlice';
 
 const slice = createSlice({
   name: 'player',
@@ -16,7 +17,7 @@ const slice = createSlice({
     builder.addCase(getPlayersByTeamId.fulfilled, (state, action) => {
       // Add user to the state array
       console.log(current(state));
-      return action.payload.response[0];
+      return action.payload.response;
     })
   },
 })
@@ -36,6 +37,10 @@ export interface Player {
   college:     null;
   affiliation: string;
   leagues:     Leagues;
+}
+
+export interface PlayerWithStats extends Player {
+  stats:Statistics;
 }
 
 export interface Birth {

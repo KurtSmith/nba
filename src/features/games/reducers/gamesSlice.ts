@@ -1,10 +1,11 @@
 import { createSlice, current } from '@reduxjs/toolkit'
 import { getGames } from '../../../apis/gamesApiAxios';
 import { Player } from '../../players/reducers/playerSlice';
+import { Statistics } from '../../statistics/reducers/statisticsSlice';
 
 const slice = createSlice({
   name: 'games',
-  initialState: [] as Game[],
+  initialState: [] as GameWithPlayers[],
   reducers: { 
   },
   extraReducers: (builder) => {
@@ -39,6 +40,7 @@ export interface Game {
 }
 export interface GameWithPlayers extends Game {
   players:Player[];
+  statistics:Statistics[];
 }
 
 export interface Arena {

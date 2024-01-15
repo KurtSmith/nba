@@ -1,7 +1,7 @@
-import { Game } from '../features/games/reducers/gamesSlice';
+import { Game, GameWithPlayers } from '../features/games/reducers/gamesSlice';
 import { Team } from '../features/teams/reducers/teamSlice';
 
-function useTZ(teams: Game[], dateString:string) {
+function useTZ(teams: GameWithPlayers[], dateString:string) {
     return teams.filter((item) => {
         let gameTime:string="";
         switch (item.teams.home.code) {
