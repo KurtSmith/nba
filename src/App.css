@@ -25,6 +25,14 @@
   font-family: RollboxBold;
 }
 
+.App-Nav {
+  display: flex;
+  flex-wrap: wrap; 
+  align-content: center;
+  flex-direction: column;
+  background-color: black;
+}
+
 .App-link {
   color: rgb(112, 76, 182);
 }
