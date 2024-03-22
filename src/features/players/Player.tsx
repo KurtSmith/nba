@@ -1,18 +1,20 @@
 import { RootState, useTypedSelector, useAppDispatch } from '../../state/store'
 import styles from "./Player.module.css"
 import { getPlayersById } from "../../apis/playerApiAxios"
+import { getPlayerStatsBySeason } from '../../apis/statisticsApiAxios';
 import { Player } from './reducers/playerSlice';
 import { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import PlayerStats from '../player/player';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 
 
 export function PlayerComponent() {
   const dispatch = useAppDispatch();
   useEffect(() => {
-    
+
   }, []);
 
-  const player: Player = useTypedSelector((state: RootState) => state.players);
+  const player: Player[] = useTypedSelector((state: RootState) => state.players);
   const searchForPlayer = (event: React.FormEvent<HTMLFormElement>) => {
 
     const els = Array.from((event.currentTarget as HTMLFormElement).elements);;
@@ -23,23 +25,23 @@ export function PlayerComponent() {
 
   return (
     <div>
-      <Outlet />
-      <form onSubmit={searchForPlayer} style={{ display: 'flex', flexDirection: 'row' }}>
-        <label>
-          Name:
-          <input id="firstname" type="text" className={styles.textbox} onChange={() => null} />
-        </label>
-        <input type="submit" value="Submit" className={styles.button}/>
+      <form onSubmit={searchForPlayer} style={{ display: 'flex', flexFlow: 'row wrap', justifyContent: 'center', fontSize: 'xx-large' }}>
+        <InputGroup size="lg" style={{ maxWidth: '30%', margin:'1%' }}>
+          <Form.Control
+            placeholder="Player Last Name"
+            aria-label="Player Last Name"
+            aria-describedby="basic-addon2"
+            id="firstname"
+          />
+          <Button variant="outline-secondary" id="button-addon2" type='submit'>
+            Search
+          </Button>
+        </InputGroup>
       </form>
-      <div id="firstnameLabel" style={{ display: 'flex', flexDirection: 'column' }}>
-        {player.firstname}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {player.lastname}
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {player.id}
-      </div>
+      <div style={{display:'flex', flexFlow:'row wrap',justifyContent: 'center', fontSize: 'xx-large', flexDirection:'column', alignContent:'center'}}>
+        {player.map(player =>
+            <PlayerStats player={player}></PlayerStats>)}
+        </div>
     </div>
   )
 }

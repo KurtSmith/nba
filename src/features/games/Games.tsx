@@ -8,6 +8,7 @@ import './Games.css'
 import 'react-calendar/dist/Calendar.css';
 import useTZ from '../../helpers/useTZ';
 import TeamsTab from '../teamsTab/TeamsTab';
+import { CirclesWithBar } from 'react-loader-spinner';
 
 export function GameComponent() {
 
@@ -21,7 +22,8 @@ export function GameComponent() {
     dispatch(getGames(dateString));
   }, [dateString]);
 
-  const games: GameWithPlayers[] = useTypedSelector((state: RootState) => state.games);
+  const games: GameWithPlayers[] = useTypedSelector((state: RootState) => state.games).games;
+  const loading: boolean =  useTypedSelector((state: RootState) => state.games).isLoading;
   const tzs = useTZ(games, dateString);
 
   const getDateString = (date: string): string => {
@@ -39,7 +41,18 @@ export function GameComponent() {
       <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap', alignContent: 'center' }}>
         <span className='date'>{dateString}</span>
       </div>
-      {
+      { loading ? <CirclesWithBar
+        height="400"
+        width="400"
+        color="#4fa94d"
+        outerCircleColor="blue"
+        innerCircleColor="red"
+        barColor="red"
+        ariaLabel="circles-with-bar-loading"
+        wrapperStyle={{'display':'block'}}
+        wrapperClass="centered"
+        visible={true}/> 
+        :
         tzs.map((game) =>
         (
           <div className='flexDivOuter'>
@@ -61,7 +74,7 @@ export function GameComponent() {
                 </div>
               </div>
             </div>
-            <div>
+            <div className="team-scoreDiv"> 
               <Accordion className='accordionStyle'>
                 <Accordion.Item eventKey="0">
                   <Accordion.Header>Box Score</Accordion.Header>

@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios'
 import { getPlayersByTeamId } from './playerApiAxios';
-import { Game, GameWithPlayers } from '../features/games/reducers/gamesSlice';
+import { Game, GameWithPlayers, GamesWithStatus } from '../features/games/reducers/gamesSlice';
 import { getPlayerStatsByGame } from './statisticsApiAxios';
 
 export const getGames = createAsyncThunk(
@@ -10,9 +10,8 @@ export const getGames = createAsyncThunk(
         const test = new Date(date + "T00:00:00.00");
         test.setDate(test.getDate() + 1);
         const nextDay = test.toISOString().substr(0, 10);
-        let gamesWithPlayers:GameWithPlayers[]=[];
-        //nextDay.setDate(nextDay.getDate() +1);
-        const response: any = await Promise.all([await axios.get(`games?date=${date}`, {
+        let gamesWithPlayers:GamesWithStatus = {games:[],isLoading:false};
+        const response: GamesWithStatus | void = await Promise.all([await axios.get(`games?date=${date}`, {
             headers: {
                 'X-RapidAPI-Key': 'dac7bd3723msh893ed925430f76bp10e447jsnb8ee6595c0fb',
                 'X-RapidAPI-Host': 'api-nba-v1.p.rapidapi.com'
@@ -30,21 +29,25 @@ export const getGames = createAsyncThunk(
             await Promise.all(values.map(async (game: Game) => {
               await dispatch(getPlayersByTeamId({ id: game.teams.home.id, season: 2023 }))
                 .then((players) => {
-                  let copy: GameWithPlayers = { players: players.payload.response, ...game };
-                  gamesWithPlayers = [...gamesWithPlayers, copy];
+                  let copy: GameWithPlayers = {
+                      players: players.payload.response, ...game,
+                      statistics: []
+                  };
+                  gamesWithPlayers.games = [...gamesWithPlayers.games, copy];
                 });
             }))
             return gamesWithPlayers;
         })
         .then(async (games)=>{
-            const gamesWithStats:GameWithPlayers[] = [];
-            const response = await Promise.all(games.map(async (game)=>
+            const gamesWithStats:GamesWithStatus = {games:[],isLoading:false}
+            await Promise.all(games.games.map(async (game)=>
             { 
                 const stats = await dispatch(getPlayerStatsByGame(game.id));
                 game.statistics = stats.payload.response;
-                gamesWithStats.push(game);
-            }));
+                gamesWithStats.games.push(game);
+            })).catch(reason=>console.log(reason));
+            gamesWithStats.isLoading = false;
             return gamesWithStats;
-        });
+        }).catch(error=>console.log(error));
         return response;
     });

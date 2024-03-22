@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit'
-import { getPlayerStatsByGame, getStatistics } from '../../../apis/statisticsApiAxios'
+import { getPlayerStatsByGame, getStatistics, getPlayerStatsBySeason } from '../../../apis/statisticsApiAxios'
 
 // First, create the thunk
 export const fetchStatics = createAsyncThunk(
@@ -23,6 +23,11 @@ const slice = createSlice({
       return action.payload.response;
     }),
     builder.addCase(getPlayerStatsByGame.fulfilled, (state, action) => {
+      // Add user to the state array
+      console.log(current(state));
+      return action.payload.response;
+    }),
+    builder.addCase(getPlayerStatsBySeason.fulfilled, (state, action) => {
       // Add user to the state array
       console.log(current(state));
       return action.payload.response;

@@ -4,7 +4,7 @@ import { Statistics } from '../../statistics/reducers/statisticsSlice';
 
 const slice = createSlice({
   name: 'player',
-  initialState: {} as Player,
+  initialState: [] as Player[],
   reducers: { 
   },
   extraReducers: (builder) => {
@@ -12,7 +12,7 @@ const slice = createSlice({
     builder.addCase(getPlayersById.fulfilled, (state, action) => {
       // Add user to the state array
       console.log(current(state));
-      return action.payload.response[0];
+      return action.payload.response;
     }),
     builder.addCase(getPlayersByTeamId.fulfilled, (state, action) => {
       // Add user to the state array
